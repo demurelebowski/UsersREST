@@ -7,6 +7,7 @@ import com.drg.usersapi.exceptions.InvalidDateRangeException;
 import com.drg.usersapi.exceptions.UserNotFoundException;
 import com.drg.usersapi.services.UserService;
 import com.drg.usersapi.utils.ConverterUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -136,22 +137,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void updateFieldsFromDTO(User user, UserDTO partialUser) {
-		if (partialUser.getEmail() != null) {
+		if (!StringUtils.isEmpty(partialUser.getEmail())) {
 			user.setEmail(partialUser.getEmail());
 		}
-		if (partialUser.getFirstName() != null) {
+		if (!StringUtils.isEmpty(partialUser.getFirstName())) {
 			user.setFirstName(partialUser.getFirstName());
 		}
-		if (partialUser.getLastName() != null) {
+		if (!StringUtils.isEmpty(partialUser.getLastName())) {
 			user.setLastName(partialUser.getLastName());
 		}
-		if (partialUser.getBirthDate() != null) {
+		if (!StringUtils.isEmpty(partialUser.getBirthDate())) {
 			user.setBirthDate(ConverterUtil.localDateFromString(partialUser.getBirthDate()));
 		}
-		if (partialUser.getAddress() != null) {
+		if (!StringUtils.isEmpty(partialUser.getAddress())) {
 			user.setAddress(partialUser.getAddress());
 		}
-		if (partialUser.getPhoneNumber() != null) {
+		if (!StringUtils.isEmpty(partialUser.getPhoneNumber())) {
 			user.setPhoneNumber(partialUser.getPhoneNumber());
 		}
 	}
